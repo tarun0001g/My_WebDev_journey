@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- <p id="fpara" class="ftext">First Paragraph</p>
+    <p>Hello ji</p>
+
+    <h2 id="fhead" class="ftext">First heading</h2> -->
+
+    <!------------------------ WAYS OF ACCESSING HTML ELEMENTS-------------------------------- -->
+    <!-- ACCESS HTML ELEMENTS USING ID --> 
+    <!-- after going live , then ispect the page , we can get access any html elemet by console window-->
+     <!-- Using IDs of html element we can get access those element in JS/js object/ -->
+      <!-- document.getElementById("id_of_element") -->
+
+      <!-- ACCESS USING CLASS -->
+        <!-- document.getElementByClassName("nameofclass") -->
+
+        <!-- access using tag name -->
+         <!-- document.getElementsByTagName("p") -->
+
+    <!-----  ACCESS USING QUERY SELECTOR  ------>
+    <!--document.querySelector(".ftext") //this method returns only single one and first selected element 
+     document.querySelectorAll("#fpara") //this will returns all elements -->
+
+     <!-- WE CAN ALSO ACCESS ANY PART OF WEBPAGE USING $0 , FIRST TAP ON THE ELEMENT AND SEARCH ON CONSOLE  -->
+
+
+
+
+     <!----------------------------------  WAYS TO  FETCH EXSISTING ELEMENT  ---------------------------------- -->
+
+     <!--------innerHTML and outerHTML--------->
+    <!-- <div id="divId">
+        <p>Good Morning</p>
+    </div> -->
+    <!-- Go live, inspect, 
+        let tag = document.getElementById("divId");
+        console.log(tag.innerHTML);
+        console.log(tag.outerHTML); 
+       // outer gives you the entire HTML of the element itself, including its opening and closing tags//
+        //(unlike innerHTML, which gives only the content inside the element)//-->
+
+
+    <!----------textContent & innerText--------->
+
+    <!-- <div id="fdiv">
+        <p>
+            This is my first
+            <span>
+                text
+            </span>
+        </p>
+         <p style="display: none;">This is my second para</p>
+
+    </div>  -->
+        <!-- textContent :Returns all the text in the element, exactly as in the DOM, including hidden text (like from elements styled display:none). -->
+         <!-- innerText : it will shows text only which are visible at webpage , it can't shows hidden text-->
+
+    <!-----------------------------------------WAY TO ADD AN ELEMENT/NEW TAG IN HTML USING JS-------------------------------------------------> 
+
+         <!-- <p>
+            This is my first
+            <span>
+                text
+            </span>
+        </p>
+        <P>
+            This is my second para
+        </P> -->
+
+        <!-- let fHeading = document.createElement("h1")
+         fHeading.textContent = "My name is holden ford"
+         let bTag = document.querySelector("body")
+        bTag.appendChild(fHeading) 
+        // Note: Using appendChild() method , a new tag will always be placed at end of the parent node
+        -->
+
+        <!---------------APPDEN ELEMENT AT ANY POSITION USING JS ----------------->
+        <!-- In this method we need to create the new element and Also Specify its direction/location/position where we want to put it  -->
+
+    <!-- <div style="background-color: rgb(36, 113, 113); padding: 2rem;">
+        Hello ji
+        <div id="mydiv" style="background-color: bisque; padding: 1rem;">
+            <p>First</p>
+            <span>Second</span>
+            <h2>Third</h2>
+        </div>
+    </div>
+    
+        <script src="index.js"></script>
+
+         <----------------REMOVEL OF HTML ELEMENT USING JS ------------------------->
+        
+         <!-- removel of child tag : It is opposite of appendChild() -->
+          <div style="background-color: rgb(36, 113, 113); padding: 2rem;">
+        Hello ji
+        <div id="mydiv" style="background-color: bisque; padding: 1rem;">
+            <p id="fpara">First Para</p>
+            <span id="spara">Second</span>
+            <h2>Third</h2>
+        </div>
+    </div> 
+<script src="index.js"></script>
+
+</body>
+</html>
