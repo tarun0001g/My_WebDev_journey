@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM manipulation in css</title>
+</head>
+<body>
+    
+    <div id="fdiv" style="background-color: aqua; padding: 2rem;" >
+        First div
+        <p id="fpara" style=" background-color: rgb(50, 216, 50); padding: 1rem;" class="firstClass secondClass">
+            First para
+        </p>
+        <div id="sdiv" style="background-color: rgb(100, 164, 220); padding: 1rem;">
+            Second div 
+            <p id="spara" style="background-color: yellow; padding: 1rem;">
+                Second para
+            </p>
+        </div>
+    </div>
+<!-- 
+steps in console window :
+
+//.style method 
+let paraElement  = document.grtElementById("spara");
+paraElement  //prints commplete html tag
+//GET method :returns all styling of paraElement
+console.log(paraElement.style); 
+//SET: method
+paraElement.style.backgroundColor = "orange";
+
+
+//.cssText method
+(we can get & set multiple styling in one line)
+let scndElement = document.getElementById("sdiv");
+//GET css styling
+console.log(scndElement.style.cssText); 
+//SET css styling (we can set multiple styling in one line)
+scndElement.style.cssText = " background-color: white ; color : brown; padding: 0.5rem";
+
+
+//.setAttribute('attribute_name','attribute_value');
+//this method is used to create or update the attribute(class,id) of  an element/tag//
+
+let firstElement = document.querySelector('#fdiv');
+firstElement //shows current properties and attributes
+firstElement.setAttribute('class','divClass');
+firstElement //shows new class in property
+firstElement.setAttribute('style',"padding: 0.5rem")//it will remove remaining all styles property
+
+
+//.className
+//used to get and set multiple names of class//
+let para = $0;
+console.log(para.class);
+para.className = "mota kaka";
+para (returns properties of a element)
+
+//.classList
+(.classList method is used to get list of classes in an element,
+it also used to add, remove, toggle an element (it gives true and false if class is present them it will remove it and if class not present then it will add it),
+it also used check the attendance of a class)
+
+let mypara = document.querySelector("#fpara")
+mypara.classList
+mypara.classList.add("thirdClass");
+mypara.classList
+mypara.classList.remove("thirdClass");
+mypara.classList.toggle("secondClass"); //it will remove the secondClass
+mypara.classList.toggle("secondClass"); // now it will add the secondClass
+mypara.classList.contains("thirdClass"); //check the class is present or not in true-false
+-->
+
+
+</body>
+</html>
