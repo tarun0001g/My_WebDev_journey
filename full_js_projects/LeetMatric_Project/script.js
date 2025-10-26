@@ -1,92 +1,122 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    const searchButton = document.getElementById("srch-btn");
-    const usernameInput = document.getElementById("username");
-    const statsContainer = document.querySelector(".statsContainer");
-    const easyProgressCircle = document.querySelector(".easyProgressItem circle");
-    const mediumProgressCircle = document.querySelector(".mediumProgressItem circle");
-    const hardProgressCircle = document.querySelector(".hardProgressItem circle");
+    
+    const searchButton = document.getElementById("search-btn");
+    const usernameInput = document.getElementById("user-input");
+    const statsContainer = document.querySelector(".stats-container");
+    const easyProgressCircle = document.querySelector(".easy-progress");
+    const mediumProgressCircle = document.querySelector(".medium-progress");
+    const hardProgressCircle = document.querySelector(".hard-progress");
     const easyLabel = document.getElementById("easy-label");
     const mediumLabel = document.getElementById("medium-label");
     const hardLabel = document.getElementById("hard-label");
-    const cardStatsContainer = document.querySelector(".statsCardContainer");
+    const cardStatsContainer = document.querySelector(".stats-cards");
 
-    //This fn will validate true or false for username format using regex(regular expression)
+    //return true or false based on a regex
     function validateUsername(username) {
         if(username.trim() === "") {
-            alert("Username cannot be empty!");
+            alert("Username can not be empty!");
             return false;
         }
-        const usernameRegex = /^[a-zA-Z0-9_-]{1,15}$/;
-        const isMatching = usernameRegex.test(username);
-        if(!isMatching){
-            alert("Invalid username format!");
-            return false;
+        const regex = /^[a-zA-Z0-9_-]{1,15}$/;
+        const isMatching = regex.test(username);
+        if(!isMatching) {
+            alert("Invalid Username!");
         }
         return isMatching;
     }
 
+    //Fetch user details from LeetCode GraphQL API
     async function fetchUserDetails(username) {
-        const apiUrl = `https://leetcode-stats-api.herokuapp.com/${username}`;
 
-        try {
+        try{
             searchButton.textContent = "Searching...";
             searchButton.disabled = true;
+            //statsContainer.classList.add("hidden");
 
-            //way-1 of fetching data using api
-            // const response = await fetch(apiUrl);
-            // if(!response.ok) {
-            //     throw new Error("Unable to find user details");
-            // }
-            // const data = await response.json();
-            // console.log("Fetched data:",data);
-
-            //way-2 of fetching data using api(another way of doing the same thing as above)
-            //It is a POST request to fetch data from GraphQL endpoint
+            // const response = await fetch(url);
+            const proxyUrl = 'https://cors-anywhere.herokuapp.com/' 
             const targetUrl = 'https://leetcode.com/graphql/';
+            
             const myHeaders = new Headers();
             myHeaders.append("content-type", "application/json");
 
             const graphql = JSON.stringify({
-                query: "\n    query userSessionProgress($username: String!) {\n        allQuestionsCount {\n            difficulty\n            count\n        }\n        matchedUser(username: $username) {\n            submitStats {\n                acSubmissionNum {\n                    difficulty\n                    count\n                }\n                totalSubmissionNum {\n                    difficulty\n                    count\n                }\n            }\n        }\n    }\n",
+                query: "\n    query userSessionProgress($username: String!) {\n  allQuestionsCount {\n    difficulty\n    count\n  }\n  matchedUser(username: $username) {\n    submitStats {\n      acSubmissionNum {\n        difficulty\n        count\n        submissions\n      }\n      totalSubmissionNum {\n        difficulty\n        count\n        submissions\n      }\n    }\n  }\n}\n    ",
                 variables: { "username": `${username}` }
-            });
-
+            })
             const requestOptions = {
                 method: "POST",
                 headers: myHeaders,
                 body: graphql,
-                redirect: "follow"
             };
-            const response = await fetch(targetUrl, requestOptions);
-            if (!response.ok) {
+
+            const response = await fetch(proxyUrl+targetUrl, requestOptions);
+            if(!response.ok) {
                 throw new Error("Unable to fetch the User details");
             }
+            const parsedData = await response.json();
+            console.log("Logging data: ", parsedData) ;
 
-            const data = await response.json();
-            console.log("Logging data: ", data);
-            //if we run this query then we will get the error for (alex) username because , in this post request we are sendong request to the leetcode server who is blocking our request
-            // so now we will use proxy server (demo server) to bypass this requesst to the leetcode server
-
+            displayUserData(parsedData);
         }
-
         catch(error) {
-            statsContainer.innerHTML= `<p>No data found</p>`
-            }
+            statsContainer.innerHTML = `<p>${error.message}</p>`
+        }
         finally {
             searchButton.textContent = "Search";
             searchButton.disabled = false;
         }
     }
+    // Link for proxy server : https://cors-anywhere.herokuapp.com/corsdemo 
 
-    searchButton.addEventListener("click", function() {
+    //Populate data in the UI
+    function updateProgress(solved, total, label, circle) {
+        const progressDegree = (solved/total)*100;
+        circle.style.setProperty("--progress-degree", `${progressDegree}%`);
+        label.textContent = `${solved}/${total}`;
+    }
+
+
+    function displayUserData(parsedData) {
+        const totalQues = parsedData.data.allQuestionsCount[0].count;
+        const totalEasyQues = parsedData.data.allQuestionsCount[1].count;
+        const totalMediumQues = parsedData.data.allQuestionsCount[2].count;
+        const totalHardQues = parsedData.data.allQuestionsCount[3].count;
+
+        const solvedTotalQues = parsedData.data.matchedUser.submitStats.acSubmissionNum[0].count;
+        const solvedTotalEasyQues = parsedData.data.matchedUser.submitStats.acSubmissionNum[1].count;
+        const solvedTotalMediumQues = parsedData.data.matchedUser.submitStats.acSubmissionNum[2].count;
+        const solvedTotalHardQues = parsedData.data.matchedUser.submitStats.acSubmissionNum[3].count;
+
+        updateProgress(solvedTotalEasyQues, totalEasyQues, easyLabel, easyProgressCircle);
+        updateProgress(solvedTotalMediumQues, totalMediumQues, mediumLabel, mediumProgressCircle);
+        updateProgress(solvedTotalHardQues, totalHardQues, hardLabel, hardProgressCircle);
+
+        const cardsData = [
+            {label: "Overall Submissions:", value:parsedData.data.matchedUser.submitStats.totalSubmissionNum[0].submissions },
+            {label: "Overall Easy Submissions:", value:parsedData.data.matchedUser.submitStats.totalSubmissionNum[1].submissions },
+            {label: "Overall Medium Submissions:", value:parsedData.data.matchedUser.submitStats.totalSubmissionNum[2].submissions },
+            {label: "Overall Hard Submissions:", value:parsedData.data.matchedUser.submitStats.totalSubmissionNum[3].submissions },
+        ];
+
+        cardStatsContainer.innerHTML = cardsData.map(
+            data => 
+                    `<div class="card">
+                    <h4>${data.label}</h4>
+                    <p>${data.value}</p>
+                    </div>`
+        ).join("")
+
+    }
+
+    //Main function to handle search button click
+    searchButton.addEventListener('click', function() {
         const username = usernameInput.value;
-        console.log("logging username:",username);
-
+        console.log("logggin username: ", username);
         if(validateUsername(username)) {
             fetchUserDetails(username);
         }
     })
-
 
 })
