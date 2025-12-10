@@ -11,3 +11,8 @@ For React i am watching " chai aur react series " by Hitesh bhaiya!!
 npm- node package manager
 npx- node package executor
 
+extra: 
+// ctr + c = to stop run
+// ctrl + ` = to open terminal
+// npm run start = to execute code (in react)
+// npm run dev = to execute code (in vite react)
