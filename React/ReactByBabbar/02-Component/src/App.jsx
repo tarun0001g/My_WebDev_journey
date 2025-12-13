@@ -1,9 +1,9 @@
 
 import './App.css'
 import UserCard from './components/UserCard.jsx'
-import my from "../src/assets/my.jpg"
-import holden from "../src/assets/holden.avif"
-import walter from "../src/assets/walter.webp"
+import my from "./assets/my.jpg"
+import holden from "./assets/holden.avif"
+import walter from "./assets/walter.webp"
 
 
 function App() {
