@@ -1,0 +1,21 @@
+
+
+.user-card{
+    width: 250px;
+    font-size: 1.3rem;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: rgb(170, 141, 106);
+    color: black;
+    align-items: center;
+
+}
+
+#my-image{
+    width: 50%;
+    border-radius: 50%;
+}
+
