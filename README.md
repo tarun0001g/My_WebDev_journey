@@ -16,3 +16,4 @@ extra:
 // ctrl + ` = to open terminal
 // npm run start = to execute code (in react)
 // npm run dev = to execute code (in vite react)
+// rafce -  to get boiler plate code
