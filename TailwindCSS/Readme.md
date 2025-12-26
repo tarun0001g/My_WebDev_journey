@@ -1,4 +1,3 @@
-# Tailwind CSS Learning & Project Showcase 🚀
 
 This repository documents my **Tailwind CSS learning journey** and hands-on practice. It includes:
 
