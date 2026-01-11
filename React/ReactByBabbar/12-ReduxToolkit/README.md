@@ -1,9 +1,32 @@
 
 
+Redux is a library used to manage global state in a React application.
+
+👉 In simple words:
+Redux helps you store and manage data that many components need to use.
+
+--------------------------------------------------------------------------------------------------------------------------
+🔗 Important React-Redux Hooks
+
+🔹 useSelector : Used to read data from Redux store.
+Ex. const count = useSelector(state => state.counter.count);
+
+🔹 useDispatch : Used to send actions to Redux.
+Ex. const dispatch = useDispatch();
+
+--------------------------------------------------------------------------------------------------------------------------
+
+// Steps - 
+// 1. create store (in 'redux' folder)
+// 2. wrap the App.js with Provider
+// 3. create slice (in 'features' folder)
+// 4. create Reducers in slice 
+// 5. register the created reducers in the store
+// 6. useSelector, dispatch 
+
 // Whole path - 
 // UI trigger -> Action dispatch -> store -> reducer -> state update in store -> UI update 
 // ex- button click -> handlefunc() -> store -> increment() -> num+1 in store -> num+1 in UI
-
 
 ---------------------------------------------------------------------------------------------------------------------
 1. First we will create the store -> store.js
@@ -26,11 +49,4 @@ import { Provider } from 'react-redux'
 
 6. Dispatch the action using useDispatch hook
 
---------------------------------------------------------------------------------------------------------------------------
-// Steps - 
-// 1. create store (in 'redux' folder)
-// 2. wrap the App.js with Provider
-// 3. create slice (in 'features' folder)
-// 4. create Reducers in slice 
-// 5. register the created reducers in the store
-// 6. useSelector, dispatch
+

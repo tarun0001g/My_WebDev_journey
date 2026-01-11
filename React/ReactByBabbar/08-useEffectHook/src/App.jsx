@@ -15,7 +15,7 @@ function App() {
   //second -> cleanup function
   //third -> array / comma sepatated dependency list
 
-  //syntax of useEffect
+  //syntax of useEffect:
   // useEffect(()=>{
   //   first; // runs when,When the component mounts (first time it appears), runs everytime when third changes
 
@@ -73,11 +73,11 @@ function handleClick(){
 
   return (
     <div>
-      {/* <LoggerComponent/> */}
+      <LoggerComponent/>
       {/* <TimerComponent/> */}
       {/* <DataFetcher/> */}
       {/* <ResizeComponent/> */}
-      <MultieffectComponent/>
+      {/* <MultieffectComponent/> */}
 
 
        {/* <button onClick={handleClick}>Click me</button>
