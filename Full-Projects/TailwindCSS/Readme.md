@@ -1,8 +1,8 @@
 
-This repository documents my **Tailwind CSS learning journey** and hands-on practice. It includes:
+This repository documents my  It includes:
 
-* A **responsive PW Skills–inspired landing page** built using Tailwind CSS
-* A **practice file** where I experimented with most Tailwind utilities, concepts, and responsive properties
+* A **practice file** where I experimented with most Tailwind utilities, concepts, and responsive properties (practice.html)
+* A  full Tailwind CSS Project  **responsive PW Skills–inspired landing page** All in One (pwweb.html)
 
 I followed a structured tutorial and then implemented everything practically to strengthen my understanding.
 
