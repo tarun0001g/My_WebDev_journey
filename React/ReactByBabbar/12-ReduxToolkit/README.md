@@ -33,7 +33,7 @@ Ex. const dispatch = useDispatch();
 using this web: https://redux-toolkit.js.org/introduction/why-rtk-is-redux-today
 
 2. Provide the Redux Store to React
- now we will wrap the  <App/> component with  provider
+ now we will wrap the  <App/> component with  provider in mmain.jsx file
  -> immport these: 
 import { store } from './app/store' //path can be differ
 import { Provider } from 'react-redux'

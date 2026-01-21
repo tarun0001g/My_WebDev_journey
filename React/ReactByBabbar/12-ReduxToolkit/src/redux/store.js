@@ -9,6 +9,6 @@ export const store = configureStore({
 
 //Steps:
 // create store
-// wrap app component under provider
+// wrap app component under provider  in main.jsx
 // create Slice
 // register reducer in store 

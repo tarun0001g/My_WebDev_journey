@@ -4,7 +4,10 @@ In this repo i am learning, practicing and exploring web devlopment skills, with
 
 I am very thankful for those all teachers who are providing valuable Content Free Of Cost in Youtube!!
 
-In JavaScript journey i am watching and learnig from Love Babbar bhaiya!!
-who gave priceless and detailed knowledge of JavaScript.
+In JavaScript,React  i am watching and learnig from Love Babbar bhaiya!!
+who gave priceless and detailed knowledge of each concepts.
 
-For React i am watching " chai aur react series " by Hitesh bhaiya!!
+I  am also watching " chai aur react series " by Hitesh bhaiya!! for mastering react.
+
+ Knidly visit Readme files for better understandings of this repo.
+ 
