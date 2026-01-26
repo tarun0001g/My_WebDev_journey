@@ -26,10 +26,31 @@ we will add main 3 routes
 - Then we have created components and linked/imported in app.jsx
 
 # Defininng each components
-- first we will add navlinks in Navbar
+- first we will add navlinks in Navbar\
+# home.jsx
 - then we will edit/configure Home page
 - We will use conditional rendering in Home page where, if we creatig new paste->show -> Create Paste button
 for updation ->show-> Update the paste button
 - Basically edit/update paste will forwarded from Pastes.jsx page with Paste ID
 (we will use paste id as a logic, if paste comes with id->Update paste button, else->Create Paste button) Ex.(http://localhost:5173/?pasteId=00144)
+- Then we wiill add textarea for creating/updating content
+- Then we will add onClick logic in a fn for updating/creating a paste
+# pastes
+- now we will edit the list of pastes page
+- here we will add search section, list of all pastes with content with buttons like Edit/View/Delete/Copy/Share
+- For search bar, we will use filtering, for filtering we need to fetch overall data and filter them with Search parameters
+- so we will fetch overallData from state(Store) using useSelector 
+- now we will find searched content using filter fn and paste title & searched parameter
+- now we will add seaarch bar and all pastes with content,date & view/delete/edit/copy buttons
+- now we will add logic for onclick of each button
+- for view button we will open View.jsx page
+# View
+- by onclick of view we will route it to the view.jsx page
+- we will show any particular paste based on its ID
+- it will take id as a parameter like './pastes/id'
+- we will copy paste same code from home.jsx and just disable the changes
+
+
+
+
 
