@@ -62,7 +62,7 @@ const Home = () => {
         <input
           className="bg-black p-1 pl-3 rounded-2xl mt-1 w-[67%]"
           type="text"
-          placeholder="Enter title here"
+          placeholder="Enter title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -83,7 +83,7 @@ const Home = () => {
           className="bg-black mt-4 min-w-[500px] p-2 rounded-2xl"
           type="text"
           value={value}
-          placeholder="Enter content here"
+          placeholder="Enter your paste content here..."
           onChange={(e) => setValue(e.target.value)}
           rows={20}
         />

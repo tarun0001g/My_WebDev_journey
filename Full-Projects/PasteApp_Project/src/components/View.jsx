@@ -18,6 +18,13 @@ const View = () => {
     return <div className="text-white mt-10">Loading paste...</div>;
   }
 
+  // Copy button logic
+  const handleCopy = (content) => {
+  navigator.clipboard.writeText(content);
+  toast.success("Content copied!");
+};
+
+
    return (
     <div>
       <div className="flex flex-row gap-4 mt-2 text-center place-content-between">
@@ -30,7 +37,12 @@ const View = () => {
           // onChange={(e) => setTitle(e.target.value)}
           disabled //marked as disabled
         />
-        
+        <button
+          className="bg-black p-2 rounded-2xl mt-1 gap-6 w-[25%] disabled:opacity-50"
+          onClick={() => handleCopy(paste?.content)}
+        >
+          Copy Content
+        </button>
       </div>
 
       {/* Content input */}
