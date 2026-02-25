@@ -1,0 +1,16 @@
+{
+  "name": "demo-npm",
+  "version": "1.0.0",
+  "description": "In this project we will learn everything about npm, packages, dependencies and npm tools.\r we will also learn how to use/manage npm packages and dependencies.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "chalu-kr": "node app.js"
+  },
+  "author": "Tarun Makavana",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
