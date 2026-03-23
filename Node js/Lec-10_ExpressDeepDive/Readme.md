@@ -19,4 +19,11 @@ whenever we want to parse the data(body), we will execute built-in middleware fn
 
 -> we have checked that how the body will appear before data parsing and after data parsing 
 
+# Express Router :- 
+- Instead of writing all routes in one file, You can create different files for different routes.
+
+used to:
+        👉 Divide your routes into separate files
+        👉 Keep your code clean and organized
+
 
