@@ -3,6 +3,7 @@ const express = require("express");
 
 const app = express();
 
+//Middlewares
 app.get("/", (req, res, next) => {
   console.log("In the first dummy middleware",  req.url, req.method);
   next();
