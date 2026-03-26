@@ -11,3 +11,15 @@
 - note:- we will give direct file link in href="home.css" of html file ()
 
 # We can also add styling using tailwind css. 
+- To apply styling of tailwind css, we need two terminals 
+    1. to run tailwind compiler (watch mode)
+    2. to run node server
+
+- We wil install concurrently package to run them both together
+ npm install concurrently --save-dev
+- Note that package.json file should have proper scripts :-
+    "scripts": {
+    "start": "nodemon app.js",
+    "tailwind": "tailwindcss -i ./public/style.css -o ./public/output.css --watch",
+    "dev": "concurrently \"npm run start\" \"npm run tailwind\""
+  },
