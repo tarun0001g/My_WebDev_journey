@@ -7,15 +7,16 @@ const rootDir = require("../utility/fileHelperUtility.js")
 const adminRouter = express.Router(); 
 
 adminRouter.get("/add-home", (req, res, next) => {
-    res.sendFile(path.join(rootDir, 'views', 'addHome.html')); //using file helper
+    res.render('addHome', {pageTitle: "Enter Home Details"});
 })
 
 const registeredHomes = [];
 
 adminRouter.post("/add-home", (req, res, next) => {
-  console.log("The Home is Successfully registered for:",req.body.HomeName);
-  registeredHomes.push({HouseName: req.body.HomeName});
-  res.sendFile(path.join(rootDir, 'views', 'homeAdded.html'));
+  console.log("The Home is Successfully registered for:",req.body.HouseName);
+  registeredHomes.push({HouseName: req.body.HouseName});
+  // console.log(req.body);
+  res.render('homeAdded', {pageTitle: "Home Added Successfully"});
 })
 
 //It exports two things,now they will be exported as an object and imported also as an object

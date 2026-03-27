@@ -21,3 +21,15 @@ Install:-  npm install --save ejs
 then add this in app.js after express():  const app = express();
                                           app.set("view engine", "ejs");
                                           
+- Html file name will be change as home.ejs (.ejs)
+- then we will add js code inside <% %>, <%= %>  (to show/print/add value in html tag), <%- %>
+- to link and send data to html file we will use : res.render('home', {registeredHomes});  
+res.render(.ejs file, object/variable)                                         
+
+# Partials :- 
+- Partials = reusable pieces of UI (small HTML parts)
+- Partials are small files (like header, footer) that you reuse in many pages
+- Partials are reusable template files in EJS used to avoid code repetition and maintain a consistent UI.
+- Import any partial:- Ex. <%- include("partials/header") %>
+
+# Note:- use "npm run dev" to run server.
