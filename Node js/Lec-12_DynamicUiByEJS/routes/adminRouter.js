@@ -6,9 +6,7 @@ const rootDir = require("../utility/fileHelperUtility.js")
 
 const adminRouter = express.Router(); 
 
-adminRouter.get("/add-home", (req, res, next) => {
-    res.render('addHome', {pageTitle: "Enter Home Details"});
-})
+adminRouter.get("/add-home", )
 
 const registeredHomes = [];
 
@@ -22,3 +20,4 @@ adminRouter.post("/add-home", (req, res, next) => {
 //It exports two things,now they will be exported as an object and imported also as an object
 exports.adminRouter = adminRouter;
 exports.registeredHomes = registeredHomes;
+

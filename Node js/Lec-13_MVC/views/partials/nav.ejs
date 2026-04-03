@@ -1,0 +1,41 @@
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    
+    <h1 class="text-2xl font-bold text-rose-500 tracking-wide">
+      AirBnB
+    </h1>
+
+    <nav class="flex items-center gap-4">
+      <a href="/" class="<%= pageName==='Home' ? 'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-650 hover:bg-rose-100 ' %>  px-4 py-2 rounded-lg font-semibold transition">
+        Home
+      </a>
+
+      <a href="/admin/add-home"
+         class="<%= pageName==='Add Home' ?  'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-700 hover:bg-rose-100 ' %> px-4 py-2 rounded-lg font-semibold transition">
+        Add Home
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- 
+  <header class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-rose-500 tracking-wide">
+        AirBnB
+      </h1>
+
+      <nav class="space-x-6">
+        <a href="/" class="text-gray-600 hover:text-rose-500 font-medium">
+          Home
+        </a>
+
+        <a href="/admin/add-home"
+           class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-lg font-semibold transition">
+           Add Home
+        </a>
+      </nav>
+    </div>
+  </header> -->
