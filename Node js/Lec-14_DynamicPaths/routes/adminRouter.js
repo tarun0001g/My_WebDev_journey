@@ -11,5 +11,11 @@ adminRouter.post("/add-home",adminController.postAddHome);
 
 adminRouter.get("/admin-home-list",adminController.getAdminHomes);
 
+adminRouter.get("/edit-home/:homeId", adminController.getEditHome);
+
+adminRouter.post("/edit-home", adminController.postEditHome);
+
+adminRouter.post("/delete-home/:homeId", adminController.postDeleteHome);
 
 exports.adminRouter = adminRouter;
+

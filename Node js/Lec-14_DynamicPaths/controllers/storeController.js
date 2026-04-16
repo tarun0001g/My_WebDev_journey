@@ -28,8 +28,18 @@ exports.getFavoriteList =  (req, res, next) => {
       res.render('store/favorite-list', {favouriteHomes: favouriteHomes, pageTitle: "Favorite Homes", pageName: "Favorites"})
       });
   })
- 
 }
+exports.postRemoveFromFavourites =  (req, res, next) => {
+ const homeId = req.params.homeId;
+ Favourite.deleteById(homeId, error => {
+  if(error){
+    console.log("Error while removing home!", error);
+  }
+  res.redirect("/favourites");
+ })
+} 
+
+
 
 exports.getHomeId =  (req, res, next) => {
     const homeId = req.params.homeId;

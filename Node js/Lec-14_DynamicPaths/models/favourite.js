@@ -29,6 +29,14 @@ module.exports = class Favourite {
         callback(!error ? JSON.parse(data): []);
       });
     }
+
+    //remove home from favourites
+    static deleteById(delHomeId, callback){
+        Favourite.getFavourites(homeIds => {
+            homeIds = homeIds.filter(homeId => delHomeId !== homeId);//if homeId match then filter it, otherwise keep the homes
+            fs.writeFile(favouriteDataPath, JSON.stringify(homeIds), callback);
+        });
+      }
   
 }
 
