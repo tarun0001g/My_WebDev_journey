@@ -7,9 +7,12 @@ To install nodemon:- npm install --save-dev nodemon
 To install express.js :- npm install express --save
 
 
-
-
-
+To import this: (Named Export)
+exports.mongoConnect = mongoConnect; 
+exports.getDB = getDB;
+ 
+ we import them as a (named import): const {mongoConnect} = require('./ / );
+                                     const {getDB} = require('./ / );
 
 
 

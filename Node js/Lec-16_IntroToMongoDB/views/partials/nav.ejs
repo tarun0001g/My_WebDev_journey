@@ -1,0 +1,44 @@
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    
+    <h1 class="text-2xl font-bold text-rose-500 tracking-wide">
+      AirBnB
+    </h1>
+
+    <nav class="flex items-center gap-4">
+      <a href="/" class="<%= pageName==='Home' ? 'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-650 hover:bg-rose-100 ' %>  px-4 py-2 rounded-lg font-semibold transition">
+        Home
+      </a>
+
+      <a href="/bookings"
+         class="<%= pageName==='bookings' ?  'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-700 hover:bg-rose-100 ' %> px-4 py-2 rounded-lg font-semibold transition">
+        Bookings
+      </a>
+
+      <a href="/homes"
+         class="<%= pageName==='Homes' ?  'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-700 hover:bg-rose-100 ' %> px-4 py-2 rounded-lg font-semibold transition">
+        All Homes
+      </a>
+
+      <a href="/favourites"
+         class="<%= pageName==='Favourites' ?  'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-700 hover:bg-rose-100 ' %> px-4 py-2 rounded-lg font-semibold transition">
+        Favourites
+      </a>
+
+      <a href="/admin/admin-home-list"
+         class="<%= pageName==='admin-homes' ?  'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-700 hover:bg-rose-100 ' %> px-4 py-2 rounded-lg font-semibold transition">
+        Admin's Homes
+      </a>
+
+      <a href="/admin/add-home"
+         class="<%= pageName==='Add Home' ?  'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-700 hover:bg-rose-100 ' %> px-4 py-2 rounded-lg font-semibold transition">
+        Add Home
+      </a>
+
+      
+    </nav>
+
+  </div>
+</header>
+
