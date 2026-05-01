@@ -14,5 +14,7 @@ exports.getDB = getDB;
  we import them as a (named import): const {mongoConnect} = require('./ / );
                                      const {getDB} = require('./ / );
 
-
-
+- To search any element/method/variable in the project: ctrl + shift+ F
+- shift + alt + F12 : to see the every use of particular clicked element/variable/method in entire project
+- to replace element/method in multiple files in single click:
+ right click on folder name + find in folder or shift + alt + f

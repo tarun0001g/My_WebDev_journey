@@ -1,41 +1,37 @@
-const fs = require("fs"); //In-Built(core) module -> Used for file handling (read, write, delete)
-const path  = require("path"); //In-Built(core) module
-const rootDir = require("../utility/fileHelperUtility");
-const { json } = require("stream/consumers");
-const { error } = require("console");
-const { data } = require("autoprefixer");
+const { getDB } = require("../utility/databaseUtility");
 
 
-const favouriteDataPath = path.join(rootDir, 'data', 'favourite.json');
 
 module.exports = class Favourite {
 
-    static addToFavourites(homeId, callback){
-      Favourite.getFavourites((favourites) => {
-        if(favourites.includes(homeId)){
-          callback("Home is already in favourites!");
-          // console.log("Home is already in favourites!");
-          // alert("Home is already in favourites!");
-        }
-        else{
-          favourites.push(homeId);
-          fs.writeFile(favouriteDataPath, JSON.stringify(favourites), callback);
-        }
-      });
+   constructor(houseId ) {
+    this.houseId = houseId;
+  }
+
+  // Add home to favourites
+  save(){
+    const db = getDB();
+    return db.collection("favourites").findOne({houseId : this.houseId}).then( alreadyFav => {
+      if(!alreadyFav){
+        return db.collection("favourites").insertOne(this); //add  home in favourite homes collection in the DB
+      }
+      return Promise.resolve(); // if home is already in fav, then we will return resolved promise to avoid error in the console
+    })
+    
+  }
+
+
+
+  // Get all favourite homes
+   static getFavourites(){//This fn returns data of all registered homes
+      const db = getDB();
+      return db.collection("favourites").find().toArray();// returns promise array of favourite homes 
     }
 
-   static getFavourites(callback){//This fn returns data of all registered homes
-      fs.readFile(favouriteDataPath, (error, data) => { //Async OP
-        callback(!error ? JSON.parse(data): []);
-      });
-    }
-
-    //remove home from favourites
-    static deleteById(delHomeId, callback){
-        Favourite.getFavourites(homeIds => {
-            homeIds = homeIds.filter(homeId => delHomeId !== homeId);//if homeId match then filter it, otherwise keep the homes
-            fs.writeFile(favouriteDataPath, JSON.stringify(homeIds), callback);
-        });
+  // Remove home from favourites
+    static deleteById(delHomeId){
+        const db = getDB();
+        return db.collection("favourites").deleteOne({ houseId: delHomeId });
       }
   
 }

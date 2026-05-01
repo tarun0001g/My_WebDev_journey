@@ -15,8 +15,7 @@ exports.getAdminHomes = (req, res, next) => {
 exports.getEditHome = (req, res, next) => {
   const homeId = req.params.homeId;
   const editing = req.query.editing === 'true'; //Query parameter/variable
-  Home.findById(homeId).then( ([homes])  => { //home details fetching
-    const home = homes[0];
+  Home.findById(homeId).then( home => { //home details fetching
     if(!home){
       console.log("Home not found for editing!");
       res.redirect("/admin/admin-home-list");

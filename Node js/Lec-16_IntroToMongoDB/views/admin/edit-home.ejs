@@ -15,7 +15,7 @@
 
     <form action="/admin/<%= editing ? 'edit-home': 'add-home' %>" method="POST" class="space-y-4">
       
-      <input type="hidden" name="id" value="<%= editing ? home.id : '' %>" /> 
+      <input type="hidden" name="id" value="<%= editing ? home._id : '' %>" /> 
       <input 
         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-rose-400 outline-none"
         type="text" 
