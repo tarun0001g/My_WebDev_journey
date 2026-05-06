@@ -1,6 +1,6 @@
 
 
-mongodb+srv://alex:alex@alximpossible.zadlbkc.mongodb.net/?appName=AlxImpossible
+
 
 In this project we will install and use Mongoose in our project.
 
