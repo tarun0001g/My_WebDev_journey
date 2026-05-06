@@ -1,6 +1,5 @@
 
 
-mongodb+srv://alex:alex@alximpossible.zadlbkc.mongodb.net/?appName=AlxImpossible
 
 ## First we will Connect To MongoDB cloud atlass server
 - we will write db connection code in databaseutility.js file
