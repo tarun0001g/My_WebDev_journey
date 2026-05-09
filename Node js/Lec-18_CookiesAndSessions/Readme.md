@@ -1,145 +1,87 @@
 
-
-mongodb+srv://alex:alex@alximpossible.zadlbkc.mongodb.net/?appName=AlxImpossible
-
-In this project we will install and use Mongoose in our project.
-
-Mongoose:- is an ODM library for MongoDB that provides schema-based structure, validation, and easy interaction with the database in Node.js.
-
-## Install the mongoose
-- npm install mongoose 
-- then we will add some changes in app.js file for connecting the mongoDB 
-- import mongoose
-- we will use mongoose.connect(url).then().cathch(); in app.js to connect with DB
-- now we will delete db util file and also remove the usage of it in our project
-- 
-## Create home schema
-- we will delete existing bookmystay DB, existing home model code
-- And then we will create new Home schema in Home model
-
-- first import mongoose
-- then create ur owm home schema using mongoose.schema() 
-
-## SAVING HOME using MongoDB
-- now we will create a model using this schema
-- Model = class created from schema
-- Using model u can create, read, update ,delete data easily
-ex. for Home model: const Home = mongoose.model("Home", homeSchema);
-
-another way: module.exports = mongoose.model('Home', homeSchema);
- Modifying postAddHome
-- we will wrap data field in { } so it become data object
-- now we will check by adding new home, so in db homes collection is created
-
-## fetching all homes
-- we will replace fetchAll() with find() method in entire project
-
-## now we will anable fn of Edit home
-- we have changed controller fn of postEditHome 
-
-## Delete Home
-- we will apply one one change from deleteById to findByIdAndDelete() method
-
-## Implementing mongoose for Favourite feature
-- First we will delete existing favourite model code.
-- then we will create new favourite schema in the favourite model file.
- we have added homeId and specified its data fields.
-
-- Then we will fix following functionalities:
-  ~ Getting all favourites
-  - To get all favourites we will configure getFavouriteList
-  - we will change method from getFavourites() to find()
-  ~ Adding to favourites
-  - now we will handle logic of adding favourites
-  - first we had find Favourite.findOne({homeId: homeId}) if already in fav or not 
-  - we have applied if-else condition to add home in favourties 
-
-  ~ Removing from a favourite 
-  - to remove any home from favourites we have changed only one method from:
-  - from: Favourite.deleteById() to Favourite.findOneAndDelete({ homeId: homeId })
-
-- Removing favourite while deleting home
- we want to remove home from favourites too when the admin delete the home.
- To solve it we will add pre Hook in home model
-
-
-## fetching relations 
-- in get favourites list, first we fetched all registered homes from DB
-- then we filtered with favourite home's IDs, and then we showed on UI
-How To Solve it ?
-- here we can fetch favourite every home one by one using its IDs from DB
-- Other solution is .populate() method
-it tells: Get all favourites and automatically fetch full Home data instead of just IDs
- .populate("homeId") :- This replaces the ID with full data
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Flow of Login Page:- 
+
+whem we click on this nav tag <a href="/login"> 
+        ↓
+
+GET /login
+        ↓
+
+authRouter.get("/login")
+        ↓
+
+getLogin()
+        ↓
+
+res.render("auth/login")
+        ↓
+
+views/auth/login.ejs
+
+
+## Checking login state:
+- now we will show only limited nav items to user untill he /she logins.
+- we will use isLoggedIn var check and add conditional rendering in nav.ejs file.
+- we will pass isLoggedIn : req.isLogged in all res.render() fns in controllers.
+- now there is one more pb, that user can still visit other pages by directly typing the url like localhost:3000/admin/add--home
+- to solbe it we will create one middleware fn in authController 
+
+## Maintaining state of request using cookies
+- Cookies are small pieces of data stored in the user’s browser by server.
+- They help websites remember user information and preferences between page loads or visits.
+
+- after login submit we still not able to see the other navbar options, because each time new request is created so that 
+isLogged = false is applied each time.
+- after login we need to store the state of request where isLoggedIn becomes true.
+- to store the state we will use cookies.
+- we will set cookie in postLogin controller fn
+- and we also have to read the cookie for every request to check isLoggedIn value
+for that we will create one more middleware fn in app.js which will first read the cookie and then set the value of isLoggedIn. 
+
+- Middleware explanation:-
+
+req.get("Cookie"):- Reads cookies from browser request headers. browsrer returns string like "isLoggedIn=true"
+
+- req.get("Cookie") ? ... : false :-  
+This ternary operator says:
+IF cookie exists
+   do something ;//Splitting Cookie code:- req.isLoggedIn = req.get("Cookie")? req.get("Cookie").split("=")[1] === "true" : false;
+ELSE
+   false
+
+.split("=") creates an array by splitting string at "=", so it becomes ["isLoggedIn", "true"]
+.split("=")[1] return second element of array : "true" , where array looks like [[0] -> "isLoggedIn", [1] -> "true"]
+ === "true" :- (Comparing with "true") Checks whether cookie value equals string "true".
+req.isLoggedIn = ... :- Saving Custom Property means it becomes: req.isLoggedIn = true;
+
+## Sessions:
+- Sessions are a way to store user-specific data on the server across multiple requests in Express.js applications.
+- when user login, server stores user's data and genereated  unique session ID and send it to browser as a cookie.
+- HTTP is stateless, That means: Every request is independent/New in a web application.
+- So session maintains user state and data across multiple requests in a web application. 
+- sessions are stored on server.
+- session enables persistent/continuous user exeperiences by maintaining state between the client and server over stateless HTTP protocol.
+- User's data is stored in session store on server, and it generates a session ID
+
+When a user visits your website:
+
+Server creates a session object
+Server generates unique session ID
+Session ID sent to browser as cookie
+Browser sends session ID on future requests
+Server identifies user using that ID
+
+- session({...}) :- creates session middleware.
+- app.use(...) :- activates it for every incoming request.
+- secret: "bookMyStay" :- Protect session cookie.
+ a secret key used for generating signature for session ID cookie. it ensures integrity and prevent modification of session data by clients.
+- resave: false :- says Do NOT save session again if nothing changed.
+- saveUninitialized: true :- says save new empty sessions even if no data added(even if user does not log in, user did not done anything).
+- Using req.session we can access and modify session data.
+- we will log values of req.session in Home page in storeController
+- we will also change the reading of cookie in app.js to read session data instead of data of cookie to set the value of isLoggedIn.  
+- app.use(session({...}));  This is storing session data in our device's memory, so each time when server restarts, session data will be re-initialized and lost or reset. So in production we need a proper database like MongoDB to store session data.
+
+
+## Session connecting with MongoDB:- 
+- we will add this session middleware in app.js:-  store: store //To store session data in MongoDB store instead of memory.

@@ -4,19 +4,20 @@ const Home = require("../models/home.js");
 
 
 exports.getHomePage = (req, res, next) => {
+  console.log("Session data is:", req.session);
 Home.find().then( registeredHomes => { // we are using destructured array of all homes(registeredHomes)
-   res.render('store/home', {registeredHomes: registeredHomes, pageTitle: "Welcome to BookMyStay!", pageName: "Home"});
+   res.render('store/home', {registeredHomes: registeredHomes, pageTitle: "Welcome to BookMyStay!", pageName: "Home", isLoggedIn: req.session.isLoggedIn});
 });
 }
 
 exports.getHomeList = (req, res, next) => {
   Home.find().then( registeredHomes => {
-    res.render('store/home-list', {registeredHomes: registeredHomes, pageTitle: "List of Homes!", pageName: "Homes"})
+    res.render('store/home-list', {registeredHomes: registeredHomes, pageTitle: "List of Homes!", pageName: "Homes", isLoggedIn: req.session.isLoggedIn})
   });
 }
 
 exports.getBookings = (req, res, next) => {
-    res.render('store/bookings', { pageTitle: "My Bookings!", pageName: "Bookings"})
+    res.render('store/bookings', { pageTitle: "My Bookings!", pageName: "bookings", isLoggedIn: req.session.isLoggedIn})
   };
 
 // exports.getFavoriteList =  (req, res, next) => {
@@ -62,7 +63,8 @@ exports.getFavoriteList = (req, res, next) => {
     res.render('store/favorite-list', {
       favouriteHomes: favouriteHomes,
       pageTitle: "Favourite Homes",
-      pageName: "Favourites"
+      pageName: "Favourites",
+      isLoggedIn: req.session.isLoggedIn
     });
   });
 }
@@ -118,7 +120,7 @@ exports.getHomeId =  (req, res, next) => {
       }
       else{
           // console.log("Home Details found: ", home);
-          res.render('store/home-detail', { pageTitle: "Home Detail", pageName: "Homes", home: home});
+          res.render('store/home-detail', { pageTitle: "Home Detail", pageName: "Homes", home: home, isLoggedIn: req.session.isLoggedIn});
       }
     });
 }

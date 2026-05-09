@@ -7,10 +7,11 @@
     </h1>
 
     <nav class="flex items-center gap-4">
-      <a href="/" class="<%= pageName==='Home' ? 'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-650 hover:bg-rose-100 ' %>  px-4 py-2 rounded-lg font-semibold transition">
+      <a href="/" class="<%= pageName==='Home' ? 'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-700 hover:bg-rose-100 ' %>  px-4 py-2 rounded-lg font-semibold transition">
         Home
       </a>
 
+      <% if(isLoggedIn) {%>
       <a href="/bookings"
          class="<%= pageName==='bookings' ?  'bg-rose-500 text-white hover:bg-rose-600' : 'text-rose-700 hover:bg-rose-100 ' %> px-4 py-2 rounded-lg font-semibold transition">
         Bookings
@@ -36,7 +37,22 @@
         Add Home
       </a>
 
-      
+      <% } %>
+
+      <% if(!isLoggedIn) {%>
+      <a href="/login"
+         class="bg-rose-600 text-white hover:bg-rose-700 px-6 py-2 rounded-lg font-semibold transition shadow-md hover:shadow-lg">
+        Login
+      </a>
+      <% } else { %>
+        <form action="/logout" method="POST">
+          <button type="submit"
+            class="bg-rose-600 text-white hover:bg-rose-700 px-6 py-2 rounded-lg font-semibold transition shadow-md hover:shadow-lg">
+            Logout
+          </button>
+        </form>
+      <% } %>
+    
     </nav>
 
   </div>

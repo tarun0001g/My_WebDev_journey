@@ -2,12 +2,12 @@ const registeredHomes = [];
 const Home = require("../models/home.js");
 
 exports.getAddHome =  (req, res, next) => { //we also need to pass editing flag here
-    res.render('admin/edit-home', {pageTitle: "Enter Home Details", pageName: "Add Home", editing: false}); 
+    res.render('admin/edit-home', {pageTitle: "Enter Home Details", pageName: "Add Home", editing: false, isLoggedIn: req.session.isLoggedIn}); 
 } 
 
 exports.getAdminHomes = (req, res, next) => {
   Home.find().then( registeredHomes => {
-    res.render('admin/admin-home-list', {registeredHomes: registeredHomes, pageTitle: "Admin's Homes!", pageName: "admin-homes", })
+    res.render('admin/admin-home-list', {registeredHomes: registeredHomes, pageTitle: "Admin's Homes!", pageName: "admin-homes", isLoggedIn: req.session.isLoggedIn })
   });
 }
 
@@ -23,7 +23,7 @@ exports.getEditHome = (req, res, next) => {
     }
        //passed home details
       console.log(homeId, editing, home);
-      res.render('admin/edit-home', { pageTitle: "Edit Your Home", pageName: "admin-homes", editing: editing, home: home});
+      res.render('admin/edit-home', { pageTitle: "Edit Your Home", pageName: "admin-homes", editing: editing, home: home, isLoggedIn: req.session.isLoggedIn});
   });
 }
 
