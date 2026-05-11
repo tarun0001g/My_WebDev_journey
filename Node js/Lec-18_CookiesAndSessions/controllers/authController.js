@@ -11,7 +11,7 @@ exports.getLogin =  (req, res, next) => {
 } 
 
 exports.postLogin = (req, res, next) => { 
-    console.log(req.body);
+    // console.log(req.body);
     // res.cookie("isLoggedIn", true);
     req.session.isLoggedIn = true; //after this we can see the connect.sid (data) of cookie in browser inspect
     // isLoggedIn = true;

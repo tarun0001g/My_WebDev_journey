@@ -4,7 +4,7 @@ const Home = require("../models/home.js");
 
 
 exports.getHomePage = (req, res, next) => {
-  console.log("Session data is:", req.session);
+  // console.log("Session data is:", req.session);
 Home.find().then( registeredHomes => { // we are using destructured array of all homes(registeredHomes)
    res.render('store/home', {registeredHomes: registeredHomes, pageTitle: "Welcome to BookMyStay!", pageName: "Home", isLoggedIn: req.session.isLoggedIn});
 });
