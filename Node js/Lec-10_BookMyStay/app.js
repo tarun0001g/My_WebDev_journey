@@ -5,8 +5,8 @@ const path = require('path');
 const express = require("express");
 const app = express();
 
-const userRouter = require("./routes/userRouter"); //router imported 
-const adminRouter = require("./routes/adminRouter"); //router imported (
+const userRouter = require("./routes/userRouter.js"); //router imported 
+const adminRouter = require("./routes/adminRouter.js"); //router imported (
 const rootDir = require("./utility/fileHelperUtility.js")
 
 app.use(express.urlencoded());
