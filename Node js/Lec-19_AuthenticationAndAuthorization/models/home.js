@@ -1,6 +1,5 @@
 
 const { default: mongoose } = require("mongoose");
-const Favourite = require("./favourite");
 
 const homeSchema = mongoose.Schema({
   //_id is automatically added by MongoDB, so there is no need to be defined here.
@@ -16,10 +15,10 @@ const homeSchema = mongoose.Schema({
 //required true  means this field should be filled mandotary
 //String, Not mandotary field , we can keep it empty
 
-homeSchema.pre('findOneAndDelete', async function (next) {
-  const homeId = this.getQuery()._id;
-  await Favourite.deleteMany({homeId: homeId}); 
-});
+// homeSchema.pre('findOneAndDelete', async function (next) {
+//   const homeId = this.getQuery()._id;
+//   await Favourite.deleteMany({homeId: homeId}); 
+// });
 
 
 

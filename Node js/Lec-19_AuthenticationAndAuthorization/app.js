@@ -6,7 +6,7 @@ const path = require('path');
 const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongodb-session")(session); //creating a session Store to sore session data in MongoDB Database.
-const mongoUrl = "mongodb+srv://alex:alex@alximpossible.zadlbkc.mongodb.net/?appName=AlxImpossible";
+const mongoUrl = "mongodb+srv://alex:alex@alximpossible.zadlbkc.mongodb.net/bookMyStay?appName=AlxImpossible";
 
 
 //Local/Internal Modules
