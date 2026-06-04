@@ -47,3 +47,8 @@
 - now favouriteHomes will be just an array of homeIds.
 - we will add another field of favourites in user model. with reference of Home.
 - for get favourtites we will make it async await. cause of DB task
+
+
+//Demo Ids
+email: tarun0003g@gmail.com pass: Tarun@123
+email: admin@gmail.com  pass: Admin@123

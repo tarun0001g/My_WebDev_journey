@@ -32,3 +32,7 @@ exports.getDB = getDB;
   → Mongoose talks to MongoDB
   → Data returns → EJS renders page 
   → Browser shows output.
+
+## Demo Ids
+email: tarun0003g@gmail.com pass: Tarun@123
+email: admin@gmail.com  pass: Admin@123
