@@ -13,7 +13,7 @@
       <%= editing ? "Edit" : "Register" %> Your Home Below!
     </h2>
 
-    <form action="/admin/<%= editing ? 'edit-home': 'add-home' %>" method="POST" class="space-y-4">
+    <form action="/admin/<%= editing ? 'edit-home': 'add-home' %>" method="POST" enctype="multipart/form-data" class="space-y-4">
       
       <input type="hidden" name="id" value="<%= editing ? home._id : '' %>" /> 
       <input 
@@ -49,9 +49,14 @@
         type="file" 
         name="photo"
         accept=".png,.jpg,.jpeg,.pdf"
-        required
+        
         />
-        <!-- multiple :- we can upload multiple files --> 
+        <!--
+        required
+        accept=" image/* "
+        accept=" image/.jpeg, image/.png, image/.jpg "
+        accept=".png,.jpg,.jpeg,.pdf"
+        multiple :- we can upload multiple files --> 
 
       <textarea 
         class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-rose-400 outline-none"

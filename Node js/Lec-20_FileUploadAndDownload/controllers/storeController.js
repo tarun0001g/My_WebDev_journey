@@ -81,23 +81,6 @@ exports.postAddToFavourite = async (req, res, next) => {
   res.redirect("/favourites");
 
 
-  // Favourite.findOne({homeId: homeId})
-  // .then( (alreadyFav) => {
-  //   if(alreadyFav){
-  //     console.log("Home is already in favourites!");
-  //   }
-  //   else{
-  //     fav = new Favourite ({homeId: homeId});
-  //     console.log("Added to favourites", homeId);
-  //     return fav.save();
-  //   }
-  // })
-  // .then(() => {
-  //     res.redirect("/favourites");
-  //   })
-  // .catch(error => {
-  //   console.log("Error while adding to favourites!", error);
-  // });
 }
 
 
@@ -113,15 +96,7 @@ exports.postRemoveFromFavourites = async (req, res, next) => {
   }
   res.redirect("/favourites");
 
-// Favourite.findOneAndDelete({ homeId: homeId }).then(result => {
-//     console.log("Removing from fav: ", result);
-//   })
-//   .catch( error => {
-//     console.log("Error while removing favourites: ", error);
-//   })
-//   .finally(() => {
-//     res.redirect("/favourites");
-//   });
+
 }
  
 
@@ -149,3 +124,21 @@ exports.getHomeId =  (req, res, next) => {
 }
 
 
+//Get House Rules
+exports.getHouseRules = (req, res, next) => {
+  const path = require("path");
+  const rootDir = require("../utility/fileHelperUtility");
+
+  if(!req.session.isLoggedIn){
+    return res.redirect("/Login");
+  }
+
+  else{
+    const homeId = req.params.homeId;
+    const rulesFileName = "BookMyStay_Rules.pdf";
+
+    const filePath = path.join(rootDir, "rules", rulesFileName);
+
+    res.download(filePath, "Rules.pdf");
+  }
+} 

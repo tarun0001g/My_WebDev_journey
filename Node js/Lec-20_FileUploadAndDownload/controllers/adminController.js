@@ -1,5 +1,6 @@
 const registeredHomes = [];
 const Home = require("../models/home.js");
+const fs = require("fs");
 
 exports.getAddHome =  (req, res, next) => { //we also need to pass editing flag here
     res.render('admin/edit-home', {
@@ -49,9 +50,24 @@ exports.getEditHome = (req, res, next) => {
 
 exports.postAddHome =  (req, res, next) => {
  
-  const { houseName, price, location, rating, photo, description} = req.body;
+  const { houseName, price, location, rating, description} = req.body;
+  console.log(houseName, price, location, rating, description);
+  console.log(req.file);
 
-  const home = new Home ( {houseName, price, location, rating, photo, description } ); // { } makes it data Obj
+  if(!req.file){
+    return res.status(422).send("Please upload a valid image file!");
+  }
+
+  const photo = req.file.path; // it will be the path of uploaded file on our server.(in uploads\image.. )
+
+  const home = new Home ( { //saving home with below details on MongoDB
+    houseName, 
+    price, 
+    location, 
+    rating, 
+    photo, 
+    description
+   } );
 
   home.save().then(() => {
     console.log("Home Saved Successfully!");
@@ -61,13 +77,22 @@ exports.postAddHome =  (req, res, next) => {
 
 //After Editing Home
 exports.postEditHome =  (req, res, next) => {
-  const { id, houseName, price, location, rating, photo, description} = req.body;
+  const { id, houseName, price, location, rating, description} = req.body;
+
   Home.findById(id).then((home) => {
     home.houseName = houseName;
     home.location = location;
     home.rating = rating;
-    home.photo = photo;
     home.description = description;
+
+    if(req.file){
+      fs.unlink(home.photo, (err) => {
+        if(err){
+          console.log("Error while deleting old home home's photo!!", err);
+        }//unlink() it will delete file from server. It takes path of file to be deleted and callback function as arguments.
+      });
+      home.photo = req.file.path; //if new photo is uploaded by home admin then & only then update with current photo path
+    }
 
     home.save().then(result => {
       console.log("Home Updated", result);
