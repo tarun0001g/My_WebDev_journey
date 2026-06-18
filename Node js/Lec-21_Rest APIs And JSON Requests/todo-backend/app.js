@@ -1,7 +1,9 @@
 
 //External Module
 const express = require("express");
-const mongoUrl = "mongodb+srv://alex:alex@alximpossible.zadlbkc.mongodb.net/todo?appName=AlxImpossible";
+require("dotenv").config();
+
+const mongoUrl = process.env.MONGO_URL;
 const { default: mongoose } = require('mongoose');
 
 //Local/Internal Modules
